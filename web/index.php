@@ -6,14 +6,9 @@
 require __DIR__.'/../vendor/autoload.php';
 
 /**
- * Silex
- */
-use Silex\Application;
-
-/**
  * Application
  */
-$app = new Application;
+$app = new Silex\Application;
 
 /**
  * Memcache
@@ -33,7 +28,7 @@ $app['dflydev.markdown'] = $app->share(function () {
 });
 
 /**
- * Symfony Yaml
+ * Symfony Yaml Parser
  */
 $app['symfony.yaml.parser'] = $app->share(function () {
 	return new Symfony\Component\Yaml\Parser;
