@@ -1,0 +1,18 @@
+{
+    "name": "zenry/sitebake",
+    "description": "Simple pages generator",
+    "require": {
+        "silex/silex": "1.*@dev",
+        "dflydev/markdown": "1.*@dev",
+        "symfony/yaml": "2.*@dev",
+        "symfony/twig-bridge": "2.*@dev"
+    },
+    "license": "WTFL",
+    "authors": [
+        {
+            "name": "zenry",
+            "email": "henry@postb.us"
+        }
+    ],
+    "minimum-stability": "dev"
+}

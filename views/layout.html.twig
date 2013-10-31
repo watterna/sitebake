@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>siteBake - {{ metadata.title|default('') }}</title>
+	{% block head %}
+	<link rel="stylesheet" href="/css/style.css" />
+	{% endblock %}
+</head>
+<body>
+
+	<nav>
+		<ul>
+			<li><a href="/">Welcome</a></li>
+			<li><a href="/about/sitebake">About</a></li>
+		</ul>
+	</nav>
+
+	<section>
+	{% block content %}{% endblock %}
+	</section>
+
+</body>
+</html>
