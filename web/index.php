@@ -50,6 +50,7 @@ $app->register(new Silex\Provider\TwigServiceProvider, [
  * Settings
  */
 $app['settings'] = [
+	'path'        => 'index',
 	'content_ext' => '.md',
 	'tpl_ext'     => '.html.twig',
 	'tpl_std'     => 'page',
@@ -107,7 +108,7 @@ $app->get('{path}', function($path) use($app)
 	return $response;
 
 
-})->value('path', 'index')->assert('path', '.+');
+})->value('path', $app['settings']['path'])->assert('path', '.+');
 
 /**
  * Run Application
