@@ -35,7 +35,7 @@ $app['dflydev.markdown'] = $app->share(function () {
 /**
  * Symfony Yaml
  */
-$app['symfony.parser'] = $app->share(function () {
+$app['symfony.yaml.parser'] = $app->share(function () {
 	return new Symfony\Component\Yaml\Parser;
 });
 
@@ -89,7 +89,7 @@ $app->get('{path}', function($path) use($app)
 		list($metadata, $content) = preg_split('/\s+-{3,}\s+/', $data, 2, PREG_SPLIT_NO_EMPTY);
 
 		// Parse metadata to array
-		$metadata = $app['symfony.parser']->parse($metadata);
+		$metadata = $app['symfony.yaml.parser']->parse($metadata);
 
 		// Parse content to HTML
 		$content  = $app['dflydev.markdown']->transformMarkdown($content);
