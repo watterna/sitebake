@@ -4,21 +4,49 @@
 	<meta charset="UTF-8">
 	<title>siteBake - {{ metadata.title|default('') }}</title>
 	{% block head %}
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/css/style.css" />
 	{% endblock %}
 </head>
 <body>
 
-	<nav>
-		<ul>
-			<li><a href="/">Welcome</a></li>
-			<li><a href="/about/sitebake">About</a></li>
-		</ul>
-	</nav>
+{% set nav = {
+	'Welcome': '/',
+	'About': '/about/sitebake'
+} %}
 
-	<section>
-	{% block content %}{% endblock %}
-	</section>
+<header class="container">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<h2>siteBake</h2>
+		</div>
+	</div>
+</header>
+
+<nav class="container">
+	<div class="row">
+		<ul class="nav nav-tabs">
+			{% for title, link in nav %}
+			<li {% if app.request.getPathInfo() == link %} class="active" {% endif %}>
+				<a href="{{ link }}">{{ title }}</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+</nav>
+
+<section class="container">
+{% block content %}{% endblock %}
+</section>
+
+<footer class="container">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<hr />
+			<p>Copyright &copy; 2013 - siteBake</p>
+		</div>
+	</div>
+</footer>
 
 </body>
 </html>
