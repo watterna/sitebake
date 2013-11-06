@@ -13,37 +13,7 @@ $app = new Silex\Application;
 /**
  * Debug
  */
-$app['debug'] = false;
-
-/**
- * Settings
- */
-$app['settings'] = [
-	
-	// Default page
-	'path'        => 'index',
-	
-	// Extention of content files
-	'content_ext' => '.md',
-	
-	// Template file extention
-	'tpl_ext'     => '.html.twig',
-	
-	// Default template filename
-	'tpl_std'     => 'page',
-	
-	// Default settings to cache content
-	'cache'       => 60,
-
-	// Cache key prefix
-	'prefix'      => 'sb:',
-	
-	// View directory location
-	'views'       => __DIR__.'/../views',
-
-	//Content directory location
-	'content'     => __DIR__.'/../content'
-];
+$app['debug'] = true;
 
 /**
  * Memcache
@@ -70,11 +40,16 @@ $app['symfony.yaml.parser'] = $app->share(function () {
 });
 
 /**
+ * Settings
+ */
+$app['settings'] = $app['symfony.yaml.parser']->parse(file_get_contents(__DIR__.'/../config/settings.yml'));
+
+/**
  * Twig Loader File
  */
 $app->register(new Silex\Provider\TwigServiceProvider, [
 	'twig.path' => [
-		$app['settings']['views']
+		__DIR__.$app['settings']['views']
 	],
 ]);
 
@@ -100,7 +75,7 @@ $app->get('{path}', function($path) use($app)
 	if(empty($html))
 	{
 		// Make path to file on disk
-		$file = $app['settings']['content'].'/'.$path.$app['settings']['content_ext'];
+		$file = __DIR__.$app['settings']['content'].'/'.$path.$app['settings']['content_ext'];
 
 		// Return error if file is not found
 		if( ! is_file($file)) {
