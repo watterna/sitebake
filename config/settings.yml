@@ -1,0 +1,23 @@
+# Default page
+path: 'index'
+
+# Extention of content files
+content_ext: '.md'
+
+# Template file extention
+tpl_ext: '.html.twig'
+
+# Default template filename
+tpl_std: 'page'
+
+# Default settings to cache content
+cache: 60
+
+# Cache key prefix
+prefix: 'sitebake:'
+
+# View directory location
+views: '/../views'
+
+# Content directory location
+content: '/../content'
