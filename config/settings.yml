@@ -14,7 +14,7 @@ tpl_std: 'page'
 cache: 60
 
 # Cache key prefix
-prefix: 'sitebake:'
+prefix: 'sb:'
 
 # View directory location
 views: '/../views'
