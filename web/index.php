@@ -11,6 +11,11 @@ require __DIR__.'/../vendor/autoload.php';
 $app = new Silex\Application;
 
 /**
+ * Debug
+ */
+$app['debug'] = false;
+
+/**
  * Settings
  */
 $app['settings'] = [
@@ -29,6 +34,9 @@ $app['settings'] = [
 	
 	// Default settings to cache content
 	'cache'       => 60,
+
+	// Cache key prefix
+	'prefix'      => 'sb:',
 	
 	// View directory location
 	'views'       => __DIR__.'/../views',
@@ -123,7 +131,7 @@ $app->get('{path}', function($path) use($app)
 		);
 
 		// Store html in cache by key
-		$app['memcache.store']->set($key, $html, MEMCACHE_COMPRESSED, ($app['debug'] ? 1 : $app['settings']['cache']));
+		$app['memcache.store']->set($app['settings']['prefix'].$key, $html, MEMCACHE_COMPRESSED, ($app['debug'] ? 1 : $app['settings']['cache']));
 	}
 
 	// Return html
